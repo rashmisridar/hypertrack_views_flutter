@@ -1,8 +1,9 @@
 library hypertrack_views_flutter;
 
 import 'dart:async';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart';
-import 'package:streams_channel/streams_channel.dart';
+import 'package:streams_channel2/streams_channel2.dart';
 
 // model imports
 import 'package:hypertrack_views_flutter/models/movement_status.dart';
@@ -22,8 +23,8 @@ class HypertrackViewsFlutter {
     return version;
   }
 
-  final String _publishableKey;
-  bool initialized;
+  final String? _publishableKey;
+  bool initialized = false;
 
   HypertrackViewsFlutter(this._publishableKey) {
     _channel.invokeMethod('initialize', _publishableKey).then((_) {

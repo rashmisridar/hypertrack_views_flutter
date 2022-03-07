@@ -18,40 +18,40 @@ enum DeviceStatus {
 
 class Device {
   /// The name of the device
-  String name;
+  String? name;
 
   /// The battery state of the device
-  int battery;
+  int? battery;
 
   /// Version of the hosting app
-  String appVersionNumber;
+  String? appVersionNumber;
 
   /// Version of the hosting app
-  String appVersionString;
+  String? appVersionString;
 
   /// The device brand
-  String deviceBrand;
+  String? deviceBrand;
 
   /// The device model
-  String deviceModel;
+  String? deviceModel;
 
   /// The operating system of the device, can be one of `iOS` or `Android`
-  String osName;
+  String? osName;
 
   /// The version of the operating system on the device
-  String osVersion;
+  String? osVersion;
 
   /// The HyperTrack SDK version on the device.
-  String sdkVersion;
+  String? sdkVersion;
 
   /// Property provides more extended description of current state,
   /// e.g. whether it it is driving, if active, etc.
   /// See [JavaDoc](https://hypertrack.github.io/sdk-views-android/javadoc/latest/com/hypertrack/sdk/views/dao/DeviceStatus.html#field.summary)
   /// for the list of possible values and their meaning.
-  int status;
+  int? status;
 
   /// [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date when the device status was created
-  String createdAt;
+  String? createdAt;
 
   Device(
       {this.appVersionNumber,
@@ -75,7 +75,8 @@ class Device {
     sdkVersion = json['device_info.sdk_version'];
 
     createdAt = json['device_status.createdAt'];
-    status = int.tryParse(json['device_status.status'].toString()); // works for int and strings
+    status = int.tryParse(
+        json['device_status.status'].toString()); // works for int and strings
   }
 
   Map<String, dynamic> toJson() {

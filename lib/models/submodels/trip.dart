@@ -1,33 +1,33 @@
 class Trip {
   /// Unique identifier of the newly created trip, case sensitive
-  String tripId;
+  String? tripId;
 
   /// Trip status, can be either `active` or `completed`
-  String status;
+  String? status;
 
   /// Timestamp for trip starting time
-  String startedAt;
+  String? startedAt;
 
   /// Metadata provided at trip start
-  String metadata;
+  String? metadata;
 
   /// Trip summary, only provided upon completion of a trip
-  String summary;
+  String? summary;
 
   /// Embeddable view URL
-  String embedURL;
+  String? embedURL;
 
   /// Sharable view URL
-  String shareURL;
+  String? shareURL;
 
   /// Destination of the trip, or `null` if trip has no destination
-  TripDestination destination;
+  TripDestination? destination;
 
   /// Estimated arrival time
-  String arriveAt;
+  String? arriveAt;
 
   /// Polyline route, only provided for trips with status `active`
-  List<List<double>> route;
+  List<List<double>>? route;
 
   Trip(
       {this.tripId,
@@ -73,7 +73,7 @@ class Trip {
     data['started_at'] = startedAt;
     data['status'] = status;
     data['trip_id'] = tripId;
-    data['destination'] = destination.toJson();
+    data['destination'] = destination!.toJson();
     data['estimate.arriveAt'] = arriveAt;
     data['estimate.route'] = route;
     return data;
@@ -82,25 +82,25 @@ class Trip {
 
 class TripDestination {
   /// Radius (in meters) of a circular trip destination
-  int radius;
+  int? radius;
 
   /// Address of destination
-  String address;
+  String? address;
 
   /// Latitude coordinate of destination center point in degrees. Negatives are for southern hemisphere
-  double latitude;
+  double? latitude;
 
   /// Longitude coordinate of destination center point in degrees. Negatives are for western hemisphere
-  double longitude;
+  double? longitude;
 
   /// time of arrival for completed trips?
-  String arrivedAt;
+  String? arrivedAt;
 
   /// time trip was exited?
-  String exitedAt;
+  String? exitedAt;
 
   /// Timestamp trip was scheduled at
-  String scheduledAt;
+  String? scheduledAt;
 
   TripDestination(
       {this.radius,
@@ -111,7 +111,7 @@ class TripDestination {
       this.exitedAt,
       this.scheduledAt});
 
-  List<double> get locationCoords => [latitude, longitude];
+  List<double> get locationCoords => [latitude!, longitude!];
 
   TripDestination.fromJson(Map<dynamic, dynamic> json) {
     address = json["destination.address"];

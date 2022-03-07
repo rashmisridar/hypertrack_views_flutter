@@ -2,8 +2,6 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:hypertrack_views_flutter/hypertrack_views_flutter.dart';
 
-import 'strings.dart';
-
 void main() {
   runApp(MyApp());
 }
@@ -15,17 +13,19 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   String _currentLocation = 'Unknown';
-  HypertrackViewsFlutter views;
+  HypertrackViewsFlutter? views;
 
   @override
   void initState() {
     super.initState();
-    views = HypertrackViewsFlutter(PUBLISHABLE_KEY);
+    views = HypertrackViewsFlutter(
+        "W8MZlkQ8PvhOtw5FNDG3CXgqlnnvPr2onENDGjUxYFxGqEGpt-w-suqzs4gkI36gRN2NnzYL1Cjm4HPj5_2e5Q");
   }
 
   Future<void> testSnapshot() async {
-    print("in testSnapshot");
-    var test = await views.getDeviceUpdate(DEVICE_ID);
+    print("in testSnapshot"); //5BEE43AE-56F9-30D8-9199-828FDE897928
+    var test =
+        await views!.getDeviceUpdate("5BEE43AE-56F9-30D8-9199-828FDE897928");
     setState(() {
       _currentLocation = test.locationCoords.toString();
     });
@@ -33,7 +33,9 @@ class _MyAppState extends State<MyApp> {
 
   Future<void> testStream() async {
     print("in testStream");
-    views.subscribeToDeviceUpdates(DEVICE_ID).listen((event) {
+    views!
+        .subscribeToDeviceUpdates("5BEE43AE-56F9-30D8-9199-828FDE897928")
+        .listen((event) {
       setState(() {
         _currentLocation = event.locationCoords.toString();
       });

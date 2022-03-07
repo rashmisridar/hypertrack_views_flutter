@@ -31,6 +31,7 @@ class HypertrackViewsFlutterPlugin : FlutterPlugin, MethodCallHandler {
     private lateinit var mHyperTrackView: HyperTrackViews
     private lateinit var context: Context
 
+    .
     override fun onAttachedToEngine(@NonNull flutterPluginBinding: FlutterPlugin.FlutterPluginBinding) {
         methodChannel = MethodChannel(flutterPluginBinding.binaryMessenger, "hypertrack_views_flutter/methods")
         eventChannel = StreamsChannel(flutterPluginBinding.binaryMessenger, "hypertrack_views_flutter/events")
